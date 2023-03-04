@@ -5,7 +5,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
-import PetsIcon from '@mui/icons-material/Pets';
+
 import * as Yup from "yup";
 import {Field, Form, Formik} from "formik";
 
@@ -40,6 +40,7 @@ const SignUp = () => (
                 }}
                 onSubmit={(values) => {
                     console.log(values)
+                    alert("Registration is sucsessfull!")
                 }}
                 validationSchema={signUpValidationSchema}>
                 {({errors, touched}) => (
