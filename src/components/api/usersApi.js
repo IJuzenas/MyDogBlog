@@ -1,4 +1,4 @@
-import HTTP from "./"
+import HTTP from "./index"
 
 // http://localhost:8080/users/all
 const getUsers = () => HTTP.get("/users/all")
@@ -8,4 +8,6 @@ const getUsers = () => HTTP.get("/users/all")
     }))
 
 // http://localhost:8080/products/create
-const createUser = () => HTTP.post("/users/create")
+const createUser = (user) => HTTP.post("/users/create", user)
+
+export {getUsers, createUser}

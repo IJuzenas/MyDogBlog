@@ -1,10 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
+import { createUser } from "./api/usersApi";
 
 import * as Yup from "yup";
 import {Field, Form, Formik} from "formik";
@@ -18,12 +19,22 @@ const signUpValidationSchema = Yup.object().shape({
         .required(),
     password: Yup.string()
         .required()
-        .min(5),
-    repeatPassword: Yup.string()
-        .required()
         .min(5)
-        .oneOf([Yup.ref('password')], "Must be equal to the one above")
 })
+
+const handleValues = () => {
+    console.log("let's try to handle the values")
+    createUser(getFormData()).then(r => console.log("success!"));
+};
+function getFormData() {
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("password",password);
+    formData.append("joinedAt", joinedAt);
+    return formData;
+};
+
 const SignUp = () => (
     <>
         <Box
@@ -35,12 +46,11 @@ const SignUp = () => (
                 initialValues={{
                     name: '',
                     email: '',
-                    password: '',
-                    repeatPassword: ''
+                    password: ''
                 }}
                 onSubmit={(values) => {
                     console.log(values)
-                    alert("Registration is sucsessfull!")
+                    alert("Registration is successfull!")
                 }}
                 validationSchema={signUpValidationSchema}>
                 {({errors, touched}) => (
@@ -77,22 +87,13 @@ const SignUp = () => (
                             helperText={touched.password && errors.password}
                             as={TextField}
                         />
-                        <Field
-                            id="repeatPassword"
-                            name="repeatPassword"
-                            label="Repeat Password"
-                            type="password"
-                            variant="standard"
-                            fullWidth
-                            error={!!errors.repeatPassword && touched.repeatPassword}
-                            helperText={touched.repeatPassword && errors.repeatPassword}
-                            as={TextField}
-                        />
+
                         <FormControlLabel
                             control={<Checkbox value="allowExtraEmails" color="primary"/>}
                             label="I want to receive inspiration, marketing promotions and updates via email."
                         />
                         <Button
+                            onClick={handleValues}
                             type="submit"
                             fullWidth
                             variant="contained"
@@ -103,7 +104,7 @@ const SignUp = () => (
                     </Form>
                 )}
             </Formik>
-            <Link href="#" variant="body2">
+            <Link href="http://localhost:3000/login" variant="body2">
                 Already have an account? Sign in
             </Link>
         </Box>
