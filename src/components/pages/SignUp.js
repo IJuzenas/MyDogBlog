@@ -5,10 +5,10 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
-import { createUser } from "./api/usersApi";
-
+import { createUser } from "../api/usersApi";
 import * as Yup from "yup";
 import {Field, Form, Formik} from "formik";
+
 
 const signUpValidationSchema = Yup.object().shape({
     name: Yup.string()
@@ -20,27 +20,18 @@ const signUpValidationSchema = Yup.object().shape({
     password: Yup.string()
         .required()
         .min(5)
-})
+});
 
-const handleValues = () => {
-    console.log("let's try to handle the values")
-    createUser(getFormData()).then(r => console.log("success!"));
-};
-function getFormData() {
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("email", email);
-    formData.append("password",password);
-    formData.append("joinedAt", joinedAt);
-    return formData;
-};
 
 const SignUp = () => (
     <>
         <Box
             noValidate
             autoComplete="off"
-            sx={{mt: 3}}
+            sx={{mt: 3,
+                backgroundImage:"/src/pics/login.jpg",
+                backgroundRepeat: 'no-repeat'
+            }}
         >
             <Formik
                 initialValues={{
@@ -50,19 +41,22 @@ const SignUp = () => (
                 }}
                 onSubmit={(values) => {
                     console.log(values)
-                    alert("Registration is successfull!")
+                    // alert(JSON.stringify(values, null, 2));
+                    createUser(values);
                 }}
                 validationSchema={signUpValidationSchema}>
-                {({errors, touched}) => (
+                {(props) => {
+                    return (
                     <Form>
                         <Field
                             id="name"
                             name="name"
                             label="Name"
                             variant="standard"
+                            value = {props.values.name}
                             fullWidth
-                            error={!!errors.name && touched.name}
-                            helperText={touched.name && errors.name}
+                            error={!!props.name && props.name}
+                            helperText={props.name && props.name}
                             as={TextField}
                         />
                         <Field
@@ -70,9 +64,10 @@ const SignUp = () => (
                             name="email"
                             label="Email"
                             variant="standard"
+                            value = {props.values.email}
                             fullWidth
-                            error={!!errors.email && touched.email}
-                            helperText={touched.email && errors.email}
+                            error={!!props.email && props.email}
+                            helperText={props.email && props.email}
                             as={TextField}
                         />
 
@@ -82,9 +77,10 @@ const SignUp = () => (
                             label="Password"
                             type="password"
                             variant="standard"
+                            value = {props.values.password}
                             fullWidth
-                            error={!!errors.password && touched.password}
-                            helperText={touched.password && errors.password}
+                            error={!!props.password && props.password}
+                            helperText={props.password && props.password}
                             as={TextField}
                         />
 
@@ -93,7 +89,6 @@ const SignUp = () => (
                             label="I want to receive inspiration, marketing promotions and updates via email."
                         />
                         <Button
-                            onClick={handleValues}
                             type="submit"
                             fullWidth
                             variant="contained"
@@ -102,7 +97,7 @@ const SignUp = () => (
                             Sign Up
                         </Button>
                     </Form>
-                )}
+                )}}
             </Formik>
             <Link href="http://localhost:3000/login" variant="body2">
                 Already have an account? Sign in
