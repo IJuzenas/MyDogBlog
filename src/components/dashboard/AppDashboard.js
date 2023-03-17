@@ -9,6 +9,7 @@ import Paper from '@mui/material/Paper';
 import Pages from "../dashboard/Pages.js";
 import HeaderAndMenu from "./HeaderAndMenu";
 import { createTheme } from '@mui/material/styles';
+import prints from "../pages/pics/prints.gif"
 
 
 const theme = createTheme({
@@ -33,10 +34,11 @@ function DashboardContent() {
                     component="main"
                     sx={{
                         backgroundColor: (theme) =>
-                            theme.palette.mode === 'dark'
+                            theme.palette.mode === 'light'
                                 ? theme.palette.grey[100]
                                 : theme.palette.grey[900],
-                        flexGrow: 1,
+                        backroundImage: prints, //TODO
+                        flexGrow: 5,
                         height: '100vh',
                         overflow: 'auto',
                     }}

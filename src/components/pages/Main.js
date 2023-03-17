@@ -12,7 +12,7 @@ function Main() {
             backgroundPosition: 'center',
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
-            width: '100vw',
+            width: '50vw',
             height: '100vh'
         }}>
             <PetsIcon/>

@@ -10,7 +10,9 @@ function App() {
   return (
     <BrowserRouter>
         <QueryClientProvider client={queryClient}>
+            <Provider store={reduxStore}>
                 <AppDashboard />
+                </Provider>
             <ReactQueryDevtools initialIsOpen={false}/>
         </QueryClientProvider>
     </BrowserRouter>
