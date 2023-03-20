@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 import * as React from "react";
-import {createUser, useUsers} from "../api/usersApi";
+import {useUserElement} from "../api/usersApi";
 import {Alert, Dialog, DialogActions, DialogContent, DialogTitle, Snackbar} from "@mui/material";
 import {Field, Formik} from "formik";
 import TextField from "@mui/material/TextField";
@@ -19,7 +19,7 @@ const userValidationSchema = Yup.object().shape({
 });
 const CreateUserModalWithFormik = ({fetchUsers, open, onClose, user}) => {
     const [alertOpen, setAlertOpen] = React.useState(false);
-    const createUser = useUsers()
+    const addNewUser = useUserElement() ;
 
     const initialValues = user ? {
         id: user.id,
@@ -44,8 +44,9 @@ const CreateUserModalWithFormik = ({fetchUsers, open, onClose, user}) => {
 
                 <Formik initialValues={initialValues}
                         onSubmit={async (user, {setSubmitting}) => {
-                            await createUser(user)
+                            await addNewUser(user)
 
+                            setSubmitting(false)
                             onClose()
                             fetchUsers()
                             setAlertOpen(true)

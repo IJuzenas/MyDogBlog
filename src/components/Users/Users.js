@@ -3,11 +3,16 @@ import {useUsers} from "../api/usersApi";
 import {useState} from "react";
 import {Table, TableBody, TableCell, TableHead, TableRow} from "@mui/material";
 import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
 import EditIcon from '@mui/icons-material/Edit';
 import CreateUserModalWithFormik from "../Users/CreateUserModalWithFormik";
 
+
+
 const Users = () => {
+    // const dispatch = useDispatch();
+    // const addUser = (user) => {
+    //     dispatch(userActions.addUser(user));
+    // };
     const navigate = useNavigate();
     const {users = [], refetch} = useUsers();
     const [openUserModal, setOpenUserModal] = useState(false)
@@ -32,11 +37,13 @@ const Users = () => {
                     <Button variant="contained" onClick={() => navigate(`/users/${userList.id}`)}>
                         Preview
                     </Button>
-                    <IconButton onClick={() => {
-                        setEditUser(userList)
-                    }}>
-                        <EditIcon/>
-                    </IconButton>
+                        <EditIcon
+                            onClick={() =>{
+                                setOpenUserModal(true);
+                                setEditUser(userList)
+                            }
+                            }
+                        />
                 </TableCell>
             </TableRow>
         ))
@@ -66,6 +73,7 @@ const Users = () => {
 
             <div style={{marginTop: "10px", textAlign: "center"}}>
                 <Button variant="outlined" onClick={() => {
+                    setOpenUserModal(true);
                     setEditUser(null)
                 }}>
                     Add new user
