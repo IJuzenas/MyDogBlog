@@ -6,6 +6,7 @@ import Main from "../pages/Main";
 import About from "../pages/About";
 import User from "../Users/User";
 import Elements from "../Elements/Elements";
+import Album from "../Elements/Album";
 
 const Pages = () => (
     <Routes>
@@ -16,6 +17,7 @@ const Pages = () => (
         <Route path="/about" element={<About/>}/>
         <Route path="/users/:id" element={<User/>}/>
         <Route path="/elements" element={<Elements/>}/>
+        <Route path="/album" element={<Album/>}/>
 
 
     </Routes>
