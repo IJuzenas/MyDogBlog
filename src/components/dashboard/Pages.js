@@ -5,8 +5,9 @@ import Users from "../Users/Users";
 import Main from "../pages/Main";
 import About from "../pages/About";
 import User from "../Users/User";
-import Elements from "../Elements/Elements";
 import Album from "../Elements/Album";
+import ElementsPreview from "../Elements/ElementsPreview";
+import CreateElement from "../Elements/CreateElement";
 
 const Pages = () => (
     <Routes>
@@ -16,8 +17,9 @@ const Pages = () => (
         <Route path="/" element={<Main/>}/>
         <Route path="/about" element={<About/>}/>
         <Route path="/users/:id" element={<User/>}/>
-        <Route path="/elements" element={<Elements/>}/>
+        <Route path="/elementsPreview" element={<ElementsPreview/>}/>
         <Route path="/album" element={<Album/>}/>
+        <Route path="/fileCreate" element={<CreateElement/>}/>
 
 
     </Routes>

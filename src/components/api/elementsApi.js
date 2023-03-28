@@ -12,18 +12,18 @@ const getAllElements = () => HTTP.get("elements/all")
 // http://localhost:8080/elements/create
 const createElement = (element) => HTTP.post("elements/create", element)
 
-const createElementJson = (element) => HTTP.post("/products", {element}).then(response =>
+const createElementJson = (element) => HTTP.post("/elements", {element}).then(response =>
     new Promise((resolve) => {
         setTimeout(() => resolve(response.data), 3000)
     }))
 
 const useElements = () => {
     const context = useQuery('getElements', getAllElements)
-    return {...context, users: context.data}}
+    return {...context, elements: context.data}}
 
 const useCreateElement = (config) => {
     const mutation = useMutation(createElementJson, config)
     return mutation.mutateAsync
 }
 
-export {createElement, useElements, useCreateElement}
+export {getAllElements, createElement, useElements, useCreateElement}
