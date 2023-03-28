@@ -10,6 +10,8 @@ export const AppMain = (
         <MenuItem label="Users" matchSubPaths link="/users" icon={<PetsIcon/>}/>
         <MenuItem label="About" link="/about" icon={<Info/>}/>
         <MenuItem label="Main" link="/" icon={<Home/>}/>
-        <MenuItem label="FoodReview" link="/elements" icon={<InventoryIcon/>}/>
+        <MenuItem label="FoodReview" link="/elementsPreview" icon={<InventoryIcon/>}/>
+
+
     </>
 );

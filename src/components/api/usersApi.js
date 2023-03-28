@@ -12,7 +12,7 @@ const getUsers = () => HTTP.get("users/all")
 // http://localhost:8080/products/create
 const createUser = (user) => HTTP.post("users/create", user)
 
-const createUserJson = (user) => HTTP.post("/users", {user}).then(response =>
+const createUserJson = (user) => HTTP.put("/users/update", {user}).then(response =>
     new Promise((resolve) => {
         setTimeout(() => resolve(response.data), 1000)
     }))
