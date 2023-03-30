@@ -16,7 +16,9 @@ const createElementJson = (element) => HTTP.post("/elements", {element}).then(re
     new Promise((resolve) => {
         setTimeout(() => resolve(response.data), 3000)
     }))
+const deleteElement = (element) => HTTP.delete("/elements/delete", element)
 
+const updateElement = (element) => HTTP.put("/elements/delete", element)
 const useElements = () => {
     const context = useQuery('getElements', getAllElements)
     return {...context, elements: context.data}}
@@ -26,4 +28,4 @@ const useCreateElement = (config) => {
     return mutation.mutateAsync
 }
 
-export {getAllElements, createElement, useElements, useCreateElement}
+export {getAllElements, createElement, useElements, useCreateElement, deleteElement, updateElement}
