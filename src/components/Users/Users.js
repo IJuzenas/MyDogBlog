@@ -1,5 +1,5 @@
 import {useNavigate} from "react-router-dom";
-import {useUsers} from "../api/usersApi";
+import {changeUser, createUser, useUsers} from "../api/usersApi";
 import {useState} from "react";
 import {Table, TableBody, TableCell, TableHead, TableRow} from "@mui/material";
 import Button from "@mui/material/Button";
@@ -9,10 +9,7 @@ import CreateUserModalWithFormik from "../Users/CreateUserModalWithFormik";
 
 
 const Users = () => {
-    // const dispatch = useDispatch();
-    // const addUser = (user) => {
-    //     dispatch(userActions.addUser(user));
-    // };
+
     const navigate = useNavigate();
     const {users = [], refetch} = useUsers();
     const [openUserModal, setOpenUserModal] = useState(false)
@@ -25,10 +22,14 @@ const Users = () => {
             </TableCell>
         </TableRow>
     )
-
+    // function DeleteUser(id){
+    //     deleteUser(id)
+    // }
+    // DeleteUser(userList.id)
     const usersElement = (
         users.map((userList, i) => (
             <TableRow key={i}>
+                <TableCell>{userList.id}</TableCell>
                 <TableCell>{userList.name}</TableCell>
                 <TableCell>{userList.email}</TableCell>
                 <TableCell>{userList.password}</TableCell>
@@ -44,6 +45,9 @@ const Users = () => {
                             }
                             }
                         />
+                    <Button variant="contained" >
+                        Delete
+                    </Button>
                 </TableCell>
             </TableRow>
         ))
@@ -74,7 +78,7 @@ const Users = () => {
             <div style={{marginTop: "10px", textAlign: "center"}}>
                 <Button variant="outlined" onClick={() => {
                     setOpenUserModal(true);
-                    setEditUser(null)
+                    setEditUser(null);
                 }}>
                     Add new user
                 </Button>

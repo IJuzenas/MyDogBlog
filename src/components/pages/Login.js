@@ -2,8 +2,6 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
@@ -83,6 +81,7 @@ export default function Login() {
                                 label="Email Address"
                                 type="email"
                                 name="email"
+                                placeholder="Email"
                                 autoComplete="email"
                                 autoFocus
                             />
@@ -94,11 +93,8 @@ export default function Login() {
                                 label="Password"
                                 type="password"
                                 id="password"
+                                placeholder="Password"
                                 autoComplete="current-password"
-                            />
-                            <FormControlLabel
-                                control={<Checkbox value="remember" color="primary" />}
-                                label="Remember me"
                             />
                             <Button
                                 type="submit"
@@ -110,9 +106,11 @@ export default function Login() {
                             </Button>
                             <Grid container>
                                 <Grid item xs>
-                                    <Link href="src/components#" variant="body2">
+                                    <Button href="http://localhost:3000/about"
+                                          variant="body2">
                                         Forgot password?
-                                    </Link>
+                                    </Button>
+
                                 </Grid>
                                 <Grid item>
                                     <Link href="http://localhost:3000/signup" variant="body2">

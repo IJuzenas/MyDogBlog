@@ -16,7 +16,7 @@ const createElementJson = (element) => HTTP.post("/elements", {element}).then(re
     new Promise((resolve) => {
         setTimeout(() => resolve(response.data), 3000)
     }))
-const deleteElement = (element) => HTTP.delete("/elements/delete", element)
+const deleteElement = (id) => HTTP.delete("/elements/delete", id)
 
 const updateElement = (element) => HTTP.put("/elements/delete", element)
 const useElements = () => {

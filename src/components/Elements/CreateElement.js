@@ -44,7 +44,7 @@ const CreateElement = (element) => {
     };
     return (
         <>
-            <Dialog open={open} onClose={handleClick}>
+            <Dialog open={open}>
                 <DialogTitle>Add new item</DialogTitle>
                 <DialogContent>
                     <DialogContentText>To add to this item data, please click 'Add' button</DialogContentText>

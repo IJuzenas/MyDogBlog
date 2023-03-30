@@ -6,10 +6,11 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import {createElement, updateElement} from "../api/elementsApi";
+import {createElement} from "../api/elementsApi";
 
 
-const EditElement = (element) => {
+
+const UpdateElement = (element) => {
     const [name, setName] = React.useState(element.name);
     const [imageData, setImageData] = React.useState(element.imageData)
     const [id, setId] = React.useState(element.id)
@@ -29,7 +30,6 @@ const EditElement = (element) => {
         setImageData(imageData);
         setImagePreview(URL.createObjectURL(imageData));
     };
-    const newElement = !!element
 
      const updateElement = (newElement) => {
         if (newElement)
@@ -54,8 +54,7 @@ const EditElement = (element) => {
                 <DialogTitle>Edit element</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        To subscribe to this website, please enter your email address here. We
-                        will send updates occasionally.
+                        To change the name and picture, just write a new name and upload a new photo
                     </DialogContentText>
                     <TextField
                         autoFocus
@@ -96,6 +95,7 @@ const EditElement = (element) => {
                             console.log("Hello from Edit from")
                             console.log(id, name, imageData)
                             updateElement(id,name, imageData)
+                            handleClose()
                         }
                     }>Update</Button>
                 </DialogActions>
@@ -103,4 +103,4 @@ const EditElement = (element) => {
         </div>
     );
 }
-export default EditElement
+export default UpdateElement

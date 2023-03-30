@@ -10,6 +10,7 @@ import * as React from "react";
 import {AccountCircle} from "@mui/icons-material";
 import {useNavigate} from "react-router-dom";
 import {Button} from "@mui/material";
+import PetsIcon from "@mui/icons-material/Pets";
 
 const Header = ({drawerWidth, open, toggleDrawer}) => {
 
@@ -61,17 +62,19 @@ const Header = ({drawerWidth, open, toggleDrawer}) => {
                     noWrap
                     sx={{flexGrow: 1}}
                 >
-                    E-Shop
+                    <PetsIcon/>
+                    MyDogBlog
                 </Typography>
-                <IconButton color="inherit" onClick={() => navigate('/cart')}>
-                    {/*<Badge badgeContent={productsInTheCart} color="secondary">*/}
-                    {/*</Badge>*/}
-                </IconButton>
                 <IconButton color="inherit">
-                    <Badge badgeContent={4} color="secondary">
-                        <NotificationsIcon/>
-                    </Badge>
                 </IconButton>
+                <Button variant="contained" startIcon={<AccountCircle/>}
+                        onClick={() => navigate('/login')}
+                        color="secondary"
+                        sx={{
+                            ml: 1
+                        }}>
+                    Login
+                </Button>
                 <Button variant="contained" startIcon={<AccountCircle/>}
                         onClick={() => navigate('/signup')}
                         color="secondary"

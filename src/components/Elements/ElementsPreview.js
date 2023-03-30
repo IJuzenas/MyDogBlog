@@ -1,11 +1,10 @@
 import {Table, TableBody, TableCell, TableHead, TableRow} from "@mui/material";
 import {useNavigate} from "react-router-dom";
-import React, {useState} from "react";
-import {useElements, createElement} from "../api/elementsApi";
-import HoverRating from "../dashboard/HoverRating";
+import React from "react";
+import {useElements} from "../api/elementsApi";
 import CreateElement from "./CreateElement";
-import UpdateElement from "./EditElement";
-
+import EditElement from "./UpdateElement";
+import Rating from "./HoverRating";
 
 
 const ElementsPreview = () => {
@@ -35,14 +34,10 @@ const ElementsPreview = () => {
                     />
                 </TableCell>
             <TableCell>
-                <UpdateElement id={elementList.id} name={elementList.name} imageData={elementList.imageData}/>
-                <button variant="outlined">
-                         Delete
-                     </button>
-                    {/*<CommentBox />*/}
+                <EditElement id={elementList.id} name={elementList.name} imageData={elementList.imageData}/>
             </TableCell>
                 <TableCell>
-                    <HoverRating/>
+                    <Rating />
                 </TableCell>
             </TableRow>
         ))
@@ -54,11 +49,11 @@ const ElementsPreview = () => {
                 <TableHead>
                     <TableRow>
                         <TableCell>ID</TableCell>
-                        <TableCell>Pavadinimas</TableCell>
-                        <TableCell>Nuotrauka</TableCell>
-                        <TableCell>Make a comment</TableCell>
+                        <TableCell>Name</TableCell>
+                        <TableCell>Photo</TableCell>
+                        <TableCell>Change</TableCell>
                         <TableCell>Rate the food</TableCell>
-                        <TableCell></TableCell>
+
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -70,5 +65,5 @@ const ElementsPreview = () => {
         </>
     );
 }
-// TODO Searchbar, kad galima butu ieskoti pagal pavadinima
+
 export default ElementsPreview;

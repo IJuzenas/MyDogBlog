@@ -1,8 +1,6 @@
 import React from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 import {createUser} from "../api/usersApi";
@@ -32,16 +30,7 @@ const SignUp = () => {
             noValidate
             autoComplete="off"
             sx={{mt: 3}}
-            //TODO backround image
         >
-            {/*<div style={{*/}
-            {/*    backgroundImage: loginpic,*/}
-            {/*    backgroundPosition: 'center',*/}
-            {/*    backgroundSize: 'cover',*/}
-            {/*    backgroundRepeat: 'no-repeat',*/}
-            {/*    width: '100vw',*/}
-            {/*    height: '100vh'*/}
-            {/*}}>*/}
             <Formik
                 initialValues={{
                     name: '',
@@ -49,8 +38,7 @@ const SignUp = () => {
                     password: ''
                 }}
                 onSubmit={(values) => {
-                    console.log(values)
-                    // alert(JSON.stringify(values, null, 2));
+                    alert("Hello, " + values.name)
                     createUser(values)
                 }}
                 validationSchema={signUpValidationSchema}>
@@ -91,11 +79,6 @@ const SignUp = () => {
                                 error={!!props.password && props.password}
                                 helperText={props.password && props.password}
                                 as={TextField}
-                            />
-
-                            <FormControlLabel
-                                control={<Checkbox value="allowExtraEmails" color="primary"/>}
-                                label="I want to receive inspiration, marketing promotions and updates via email."
                             />
                             <Button
                                 type="submit"

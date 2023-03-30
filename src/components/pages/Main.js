@@ -1,25 +1,21 @@
 import React from "react";
-import {Button} from "@mui/material";
-import PetsIcon from '@mui/icons-material/Pets';
-
 
 
 function Main() {
 
     return (
+        <>
+        <h1>WELCOME TO MY DOG BLOG!!!</h1>
         <div style={{
-            backgroundImage: `url("https://www.bunko.pet/__export/1643048611139/sites/debate/img/2022/01/24/13_caracteristicas_que_te_indican_que_un_perro_labrador_retriever_es_original.jpg_554688468.jpg")`,
+            backgroundImage: `url("https://hips.hearstapps.com/hmg-prod/images/golden-retriever-royalty-free-image-506756303-1560962726.jpg?crop=1.00xw:0.756xh;0,0.0756xh&resize=1200:*")`,
             backgroundPosition: 'center',
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
             width: '50vw',
             height: '100vh'
         }}>
-            <PetsIcon/>
-            <Button onClick={event => window.location.href = '/signup'} className="btn btn-primary">Sign up</Button>
-            <Button onClick={event => window.location.href = '/login'} className="btn btn-primary">Login</Button>
-
         </div>
+        </>
     );
 }
 

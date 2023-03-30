@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 import * as React from "react";
-import {useUserElement} from "../api/usersApi";
+import {useUserElement, changeUser, createUser} from "../api/usersApi";
 import {Alert, Dialog, DialogActions, DialogContent, DialogTitle, Snackbar} from "@mui/material";
 import {Field, Formik} from "formik";
 import TextField from "@mui/material/TextField";
@@ -17,11 +17,13 @@ const userValidationSchema = Yup.object().shape({
         .required()
         .min(5)
 });
+
+
 const CreateUserModalWithFormik = ({fetchUsers, open, onClose, user}) => {
     const [alertOpen, setAlertOpen] = React.useState(false);
-    const addNewUser = useUserElement() ;
 
-    const initialValues = user ? {
+    const isCreateNew = !!user
+    const initialValues = isCreateNew ? {
         id: user.id,
         name: user.name,
         email: user.email,
@@ -35,7 +37,12 @@ const CreateUserModalWithFormik = ({fetchUsers, open, onClose, user}) => {
         joined: ''
     }
 
-    const title = user ? "Edit user" : "Create new user"
+    const title = isCreateNew ? "Edit user" : "Create new user"
+    function createOrEditUser(userFromForm) {
+        if (isCreateNew) {
+            createUser(userFromForm)
+        }
+    }
 
     return (
         <>
@@ -44,7 +51,8 @@ const CreateUserModalWithFormik = ({fetchUsers, open, onClose, user}) => {
 
                 <Formik initialValues={initialValues}
                         onSubmit={async (user, {setSubmitting}) => {
-                            await addNewUser(user)
+                            await createOrEditUser(user)
+                            console.log(user)
 
                             setSubmitting(false)
                             onClose()
